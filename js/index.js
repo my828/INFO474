@@ -14,7 +14,7 @@
             .attr('x', 150)
             .attr('y', 20)
             .text('Average Viewership By Season');
-        d3.csv('../data/Seasons.csv')
+        d3.csv('data/Seasons.csv')
             .then((data) => makeHist(data));
     }
 
@@ -95,9 +95,9 @@
                 div.html(
                     "<h3>" + "Season: " + d['Year'] + "</h3>" 
                     + "<br/>" + "Year: " + d['Year']
-                    + "Episodes:" + d['Episodes']
-                    + "Avg Viewers (mil): " + d['Avg. Viewers (mil)']
-                    + "Most Watched Episode: " + d['Most Watched Episode']
+                    + "<br/>" + "Episodes:" + d['Episodes']
+                    + "<br/>" + "Avg Viewers (mil): " + d['Avg. Viewers (mil)']
+                    + "<br/>" + "Most Watched Episode: " + d['Most Watched Episode']
                     + 'Viewers (mil): ' + d['Viewers (mil)']
                 )
                 .style("left", (d3.event.pageX) + "px")
@@ -169,7 +169,7 @@
     // https://www.tutorialsteacher.com/d3js/scales-in-d3
     let xScale = d3.scaleTime()
       .domain([limits.yearMin, limits.yearMax])
-      .range([60, 570]);
+      .range([55, 590]);
 
     // xMap returns a scaled x value from a row of data
     let xMap = function(d) { return xScale(xValue(d)); };
@@ -180,9 +180,11 @@
     let xAxis = d3.axisBottom()
       .scale(
           d3.scaleTime()
-            .domain([limits.yearMin - 1, limits.yearMax + 1])
-            .range([45, 600])
-      ).tickFormat(d3.format('d'))
+            .domain([limits.yearMin, limits.yearMax])
+            .range([60, 600])
+      )
+      .ticks(20)
+      .tickFormat(d3.format('d'))
       ;
 
     // TODO: use d3 append, attr, and call to append a "g" element to the svgContainer
