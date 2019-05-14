@@ -71,14 +71,14 @@
         // Average horizonal line
         var sum = 0;
         avgViewers.map((data) => sum += data) 
-        var avg = sum / avgViewers.length * 10 / 10;
+        var avg = sum / avgViewers.length;
         avg = Math.round(avg * 10)/10;
-
 
         // make tooltip
         div = d3.select("body").append("div")
         .attr("class", "tooltip")
         .style("opacity", 0);
+
         svgContainer.selectAll('.bar') 
             .data(data)
             .enter()
@@ -97,8 +97,8 @@
                     + "<br/>" + "Year: " + d['Year']
                     + "<br/>" + "Episodes:" + d['Episodes']
                     + "<br/>" + "Avg Viewers (mil): " + d['Avg. Viewers (mil)']
-                    + "<br/>" + "Most Watched Episode: " + d['Most Watched Episode']
-                    + 'Viewers (mil): ' + d['Viewers (mil)']
+                    + "<br/>" + "Most Watched Episode: " + d['Most watched episode']
+                    + "<br/>" +'Viewers (mil): ' + d['Viewers (mil)']
                 )
                 .style("left", (d3.event.pageX) + "px")
                 .style("top", (d3.event.pageY - 28) + "px")
